@@ -1,166 +1,79 @@
-<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Invito Festa di Laurea in Ingegneria Elettronica</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guida QR Code - Festa di Laurea</title>
+  <!-- Base href per GitHub Pages: sostituisci 'rurr' con il nome del repo -->
+  <base href="/rurr/">
   <style>
-    body {
-      background: #f6f6fa;
-      color: #2c2c38;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 650px;
-      background: #fff;
-      margin: 30px auto 30px auto;
-      padding: 36px 30px 30px 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1.5px 6px rgba(85, 100, 255, 0.08);
-      border: 2px solid #b9c1ff;
-    }
-    h1 {
-      text-align: center;
-      font-size: 2.2em;
-      color: #4763fc;
-      margin-bottom: 0.1em;
-    }
-    .subtitle {
-      text-align: center;
-      font-size: 1.2em;
-      color: #2c2c38;
-      margin-bottom: 0.6em;
-    }
-    .emoji {
-      font-size: 2em;
-      margin-right: 0.2em;
-      vertical-align: middle;
-    }
-    section {
-      margin-bottom: 30px;
-    }
-    .tables {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-    }
-    .table-card {
-      background: #f2f6ff;
-      border-radius: 13px;
-      box-shadow: 0 2px 10px #dce3ff6c;
-      padding: 15px 18px;
-      min-width: 170px;
-      margin-bottom: 8px;
-      border-left: 5px solid #4763fc;
-      transition: transform 0.2s;
-    }
-    .table-card:hover {
-      transform: scale(1.04) rotate(-2deg);
-      background: #e7edff;
-    }
-    .table-title {
-      font-weight: bold;
-      color: #4763fc;
-      margin-bottom: 0.35em;
-      font-size: 1.1em;
-    }
-    .note {
-      background: #fffbe6;
-      color: #a08a00;
-      padding: 8px 13px;
-      border-radius: 10px;
-      margin: 18px 0;
-      border-left: 4px solid #ffd700;
-      font-size: 1em;
-      font-style: italic;
-    }
-    .dresscode, .gifts {
-      background: #f5faff;
-      border-left: 4px solid #b9c1ff;
-      padding: 14px;
-      border-radius: 10px;
-      margin-bottom: 18px;
-      font-size: 1em;
-    }
-    .footer {
-      text-align: center;
-      color: #6b6b7d;
-      font-size: .97em;
-      margin-top: 18px;
-    }
-    @media (max-width: 600px) {
-      .container {
-        padding: 12px 5vw 18px 5vw;
-      }
-      .tables {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+    body {font-family: sans-serif; background: #f5f5f5; margin:0; padding:20px;}
+    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
+    .card {background:#fff; padding:15px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center;}
+    .card h2 {margin-top:0; font-size:1.25rem;}
+    .card ul {list-style:none; padding:0; margin:10px 0; text-align:left;}
+    .card ul li {margin-bottom:4px;}
+    .slogan {font-style:italic; margin:10px 0;}
+    .qr {margin:auto; width:150px; height:150px;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>
-      <span class="emoji">🎓</span>Invito alla Festa di Laurea!
-    </h1>
-    <div class="subtitle">
-      Ingegneria Elettronica<br>
-      <span class="emoji">🎉</span>
-      Finalmente ce l'ho fatta... ora si festeggia!
+  <h1>Festa di Laurea: Guida QR Code ai Tavoli</h1>
+  <div class="grid">
+    <!-- Tavolo 1 -->
+    <div class="card" id="tavolo1-card">
+      <h2>Tavolo 1: Amplificatori Operazionali</h2>
+      <ul><li>Andrea</li><li>Clelia</li><li>Stefano</li><li>Tiziana</li></ul>
+      <div class="slogan">"Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo."</div>
+      <div id="qr1" class="qr"></div>
     </div>
-
-    <section>
-      <strong>Quando:</strong> <u>[Inserisci la data]</u><br>
-      <strong>Orario:</strong> <u>[Inserisci l'orario]</u><br>
-      <strong>Dove:</strong> <u>[Inserisci il luogo]</u>
-    </section>
-
-    <section>
-      <h2 style="margin-bottom:10px;">🍽️ Tavoli a Tema</h2>
-      <div class="tables">
-        <div class="table-card">
-          <div class="table-title">Tavolo 1: I Resistenti</div>
-          Per chi non molla mai, nemmeno davanti alle sessioni infinite!
-        </div>
-        <div class="table-card">
-          <div class="table-title">Tavolo 2: I Condensatori</div>
-          Perfetti per chi ha sempre bisogno di un attimo per caricarsi prima di ballare.
-        </div>
-        <div class="table-card">
-          <div class="table-title">Tavolo 3: I Transistor</div>
-          Gli amplificatori del divertimento!
-        </div>
-        <div class="table-card">
-          <div class="table-title">Tavolo 4: I Led</div>
-          Quelli che brillano (<i>anche troppo</i>) in pista.
-        </div>
-        <div class="table-card">
-          <div class="table-title">Tavolo 5: I Corto Circuito</div>
-          Se ti siedi qui… sappi che tutto può succedere!
-        </div>
-      </div>
-      <div class="note">
-        Fate attenzione: chi si lamenta del menù verrà “messo a terra” come una resistenza da 1 Ohm!
-      </div>
-    </section>
-
-    <section class="dresscode">
-      <b>Dress code:</b> Vietato essere spenti: venite colorati, allegri e pronti a festeggiare!
-    </section>
-
-    <section class="gifts">
-      <b>Lista regali:</b> Il regalo più bello sarà la vostra presenza, ma se volete contribuire…<br>
-      [Inserisci preferenze o IBAN per il viaggio post-laurea]
-    </section>
-
-    <div class="footer">
-      Vi aspetto per festeggiare insieme questo traguardo…<br>
-      <b>Chi non viene… ha la sessione di settembre! 😜</b>
+    <!-- Tavolo 2 -->
+    <div class="card" id="tavolo2-card">
+      <h2>Tavolo 2: Resistore</h2>
+      <ul><li>Sandra</li><li>Gino</li><li>Francesco</li><li>Mapi</li><li>Sonia</li><li>Matteo</li><li>Anna</li></ul>
+      <div class="slogan">"Ci adattiamo a tutto con la giusta resistenza."</div>
+      <div id="qr2" class="qr"></div>
+    </div>
+    <!-- Tavolo 3 -->
+    <div class="card" id="tavolo3-card">
+      <h2>Tavolo 3: Relè</h2>
+      <ul><li>Elena</li><li>Alessandro</li><li>Dani</li><li>Gabri</li><li>Enzo</li><li>Mary</li><li>Piero</li><li>Mary</li></ul>
+      <div class="slogan">"C'è chi fa scattare le luci e chi fa scattare la festa."</div>
+      <div id="qr3" class="qr"></div>
+    </div>
+    <!-- Tavolo 4 -->
+    <div class="card" id="tavolo4-card">
+      <h2>Tavolo 4: Transistor</h2>
+      <ul><li>Francesco</li><li>Roberta</li><li>Salvo</li><li>Guglielmo</li><li>Enza</li><li>Adelaide</li></ul>
+      <div class="slogan">"Tre terminali, infinite possibilità."</div>
+      <div id="qr4" class="qr"></div>
+    </div>
+    <!-- Tavolo 5 -->
+    <div class="card" id="tavolo5-card">
+      <h2>Tavolo 5: LED</h2>
+      <ul><li>Alessandra</li><li>Francesco</li><li>Ida</li><li>Marco</li><li>Elisa</li></ul>
+      <div class="slogan">"Splendiamo anche con poca corrente."</div>
+      <div id="qr5" class="qr"></div>
+    </div>
+    <!-- Tavolo 6 -->
+    <div class="card" id="tavolo6-card">
+      <h2>Tavolo 6: Condensatore</h2>
+      <ul><li>Nonni</li><li>Fabiola</li><li>Giuseppe</li><li>Elisa</li><li>Massimo</li></ul>
+      <div class="slogan">"Stabili, poco rumorosi ma fondamentali nel circuito della festa."</div>
+      <div id="qr6" class="qr"></div>
     </div>
   </div>
+  <script>
+    const base = window.location.origin + window.location.pathname;
+    const tables = [
+      {id:'qr1',anchor:'#tavolo1-card'},
+      {id:'qr2',anchor:'#tavolo2-card'},
+      {id:'qr3',anchor:'#tavolo3-card'},
+      {id:'qr4',anchor:'#tavolo4-card'},
+      {id:'qr5',anchor:'#tavolo5-card'},
+      {id:'qr6',anchor:'#tavolo6-card'}
+    ];
+    tables.forEach(t=>new QRCode(document.getElementById(t.id),{text:base+t.anchor,width:150,height:150}));
+  </script>
 </body>
 </html>
