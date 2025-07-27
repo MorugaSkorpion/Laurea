@@ -51,59 +51,21 @@
   <h1 class="text-4xl mb-6 text-center" style="color: var(--accent)">Benvenuti alla Festa di Laurea</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    <!-- Tavoli -->
     <script>
       const tables = [
-        {
-          id: 1,
-          title: "Amplificatori Operazionali",
-          image: "48 pin.png",
-          motto: "Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.",
-          guests: ["Andrea", "Clelia", "Stefano", "Tiziana"]
-        },
-        {
-          id: 2,
-          title: "Resistore",
-          image: "Resistore.jpg",
-          motto: "Ci adattiamo a tutto con la giusta resistenza.",
-          guests: ["Sandra", "Gino", "Francesco", "Mapi", "Sonia", "Matteo", "Anna"]
-        },
-        {
-          id: 3,
-          title: "Relè",
-          image: "Rele.jpg",
-          motto: "C'è chi fa scattare le luci e chi fa scattare la festa.",
-          guests: ["Elena", "Alessandro", "Dani", "Gabri", "Enzo", "Mary", "Piero", "Mary"]
-        },
-        {
-          id: 4,
-          title: "Transistor",
-          image: "BJT.jpeg",
-          motto: "Tre terminali infinite possibilità.",
-          guests: ["Francesco", "Roberta", "Salvo", "Guglielmo", "Enza", "Adelaide"]
-        },
-        {
-          id: 5,
-          title: "LED",
-          image: "Led.jpg",
-          motto: "Splendiamo anche con poca corrente.",
-          guests: ["Alessandra", "Francesco", "Ida", "Marco", "Elisa"]
-        },
-        {
-          id: 6,
-          title: "Condensatore",
-          image: "Condensatore.jpg",
-          motto: "Stabili, poco rumorosi ma fondamentali nel circuito della festa.",
-          guests: ["Nonni", "Fabiola", "Giuseppe", "Elisa", "Massimo"]
-        }
+        { id: 1, title: "Amplificatori Operazionali", image: "48 pin.png", motto: "Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.", guests: ["Andrea","Clelia","Stefano","Tiziana"] },
+        { id: 2, title: "Resistore", image: "Resistore.jpg", motto: "Ci adattiamo a tutto con la giusta resistenza.", guests: ["Sandra","Gino","Francesco","Mapi","Sonia","Matteo","Anna"] },
+        { id: 3, title: "Relè", image: "Rele.jpg", motto: "C'è chi fa scattare le luci e chi fa scattare la festa.", guests: ["Elena","Alessandro","Dani","Gabri","Enzo","Mary","Piero","Mary"] },
+        { id: 4, title: "Transistor", image: "BJT.jpeg", motto: "Tre terminali infinite possibilità.", guests: ["Francesco","Roberta","Salvo","Guglielmo","Enza","Adelaide"] },
+        { id: 5, title: "LED", image: "Led.jpg", motto: "Splendiamo anche con poca corrente.", guests: ["Alessandra","Francesco","Ida","Marco","Elisa"] },
+        { id: 6, title: "Condensatore", image: "Condensatore.jpg", motto: "Stabili, poco rumorosi ma fondamentali nel circuito della festa.", guests: ["Nonni","Fabiola","Giuseppe","Elisa","Massimo"] }
       ];
-
       document.write(
         tables.map(t => `
           <div class="card rounded-2xl shadow-xl cursor-pointer h-96">
             <div class="inner-card w-full h-full">
               <div class="card-front w-full h-full">
-                <img src="images/${t.image}" alt="${t.title}" class="w-full h-32 object-cover object-center rounded-xl mb-4" />
+                <img src="images/${t.image}" alt="${t.title}" class="w-full h-32 object-cover ${t.id===4||t.id===5?'object-bottom':'object-center'} rounded-xl mb-4" />
                 <h2 class="text-2xl font-bold mb-2">${t.title}</h2>
                 <p class="italic mb-4 text-text-muted">${t.motto}</p>
                 <p class="text-right text-sm text-text-muted">Clicca per vedere chi c'è</p>
@@ -111,7 +73,7 @@
               <div class="card-back w-full h-full flex flex-col justify-center">
                 <h2 class="text-xl font-bold mb-2 text-center">${t.title}</h2>
                 <ul class="list-disc list-inside space-y-1">
-                  ${t.guests.map(g => `<li>${g}</li>`).join('')}
+                  ${t.guests.map(g=>`<li>${g}</li>`).join('')}
                 </ul>
               </div>
             </div>
