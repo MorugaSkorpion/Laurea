@@ -22,15 +22,13 @@
       transition: transform 0.6s;
       transform-style: preserve-3d;
       position: relative;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
     }
     .flipped .inner-card { transform: rotateY(180deg); }
     .card-front, .card-back {
       backface-visibility: hidden;
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      padding: 1.5rem;
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      padding: 1rem;
       border-radius: 1rem;
     }
     .card-front { background: var(--card-dark); }
@@ -41,15 +39,13 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener('click', () => card.classList.toggle('flipped'));
-      });
+      document.querySelectorAll('.card').forEach(card => card.addEventListener('click', () => card.classList.toggle('flipped')));
     });
   </script>
 </head>
-<body class="p-8">
-  <h1 class="text-4xl mb-6 text-center" style="color: var(--accent)">Benvenuti alla Festa di Laurea</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<body class="p-4 sm:p-8">
+  <h1 class="text-2xl sm:text-4xl mb-4 sm:mb-6 text-center" style="color: var(--accent)">Benvenuti alla Festa di Laurea</h1>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
     <script>
       const tables=[
         {id:1,title:"Amplificatori Operazionali",image:"48 pin.png",motto:"Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.",guests:["Andrea","Clelia","Stefano","Tiziana"]},
@@ -61,17 +57,17 @@
       ];
       document.write(
         tables.map(t=>`
-          <div class="card rounded-2xl shadow-xl cursor-pointer min-h-[32rem]">
+          <div class="card rounded-2xl shadow-xl cursor-pointer min-h-[20rem] sm:min-h-[32rem]">
             <div class="inner-card">
               <div class="card-front">
-                <img src="images/${t.image}" alt="${t.title}" class="w-full h-80 object-cover ${t.id>3?'object-top':'object-center'} rounded-xl mb-4" />
-                <h2 class="text-2xl font-bold mb-2">${t.title}</h2>
+                <img src="images/${t.image}" alt="${t.title}" class="w-full h-48 sm:h-80 object-cover ${t.id>3?'object-top':'object-center'} rounded-xl mb-4" />
+                <h2 class="text-xl sm:text-2xl font-bold mb-2">${t.title}</h2>
                 <p class="italic mb-4 text-text-muted">"${t.motto}"</p>
-                <p class="text-right text-sm text-text-muted">"Clicca per vedere chi c'è"</p>
+                <p class="text-right text-xs sm:text-sm text-text-muted">"Clicca per vedere chi c'è"</p>
               </div>
-              <div class="card-back flex flex-col justify-center">
-                <h2 class="text-xl font-bold mb-2 text-center">${t.title}</h2>
-                <ul class="list-disc list-inside space-y-1">${t.guests.map(g=>`<li>${g}</li>`).join('')}</ul>
+              <div class="card-back flex flex-col justify-center p-4">
+                <h2 class="text-lg sm:text-xl font-bold mb-2 text-center">${t.title}</h2>
+                <ul class="list-disc list-inside space-y-1 text-sm sm:text-base">${t.guests.map(g=>`<li>${g}</li>`).join('')}</ul>
               </div>
             </div>
           </div>
@@ -81,4 +77,3 @@
   </div>
 </body>
 </html>
-
