@@ -5,8 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Laurea: Tavoli</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    body { font-family: 'Press Start 2P', cursive; }
     :root {
       --bg-dark: #0a0a0f;
       --card-dark: #1a1a2e;
@@ -15,7 +17,7 @@
       --text-muted: #888;
     }
     body { background: var(--bg-dark); color: var(--text-light); }
-    .card { perspective: 1000px; height: auto; }
+    .card { perspective: 1000px; }
     .inner-card {
       transition: transform 0.6s;
       transform-style: preserve-3d;
@@ -23,9 +25,7 @@
       width: 100%;
       height: 100%;
     }
-    .flipped .inner-card {
-      transform: rotateY(180deg);
-    }
+    .flipped .inner-card { transform: rotateY(180deg); }
     .card-front, .card-back {
       backface-visibility: hidden;
       position: absolute;
@@ -48,32 +48,30 @@
   </script>
 </head>
 <body class="p-8">
-  <h1 class="text-4xl mb-6 text-center" style="color: var(--accent)">Datasheet Laurea (L-8) di AV</h1>
+  <h1 class="text-4xl mb-6 text-center" style="color: var(--accent)">Benvenuti alla Festa di Laurea</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <script>
-      const tables = [
-        { id: 1, title: "Amplificatori Operazionali", image: "48 pin.png", motto: "Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.", guests: ["Andrea","Clelia","Stefano","Tiziana"] },
-        { id: 2, title: "Resistore", image: "Resistore.jpg", motto: "Ci adattiamo a tutto con la giusta resistenza.", guests: ["Sandra","Gino","Francesco","Mapi","Sonia","Matteo","Anna"] },
-        { id: 3, title: "Relè", image: "Rele.jpg", motto: "C'è chi fa scattare le luci e chi fa scattare la festa.", guests: ["Elena","Alessandro","Dani","Gabri","Enzo","Mary","Piero","Mary"] },
-        { id: 4, title: "Transistor", image: "BJT.jpeg", motto: "Tre terminali infinite possibilità.", guests: ["Francesco","Roberta","Salvo","Guglielmo","Enza","Adelaide"] },
-        { id: 5, title: "LED", image: "Led.jpg", motto: "Splendiamo anche con poca corrente.", guests: ["Alessandra","Francesco","Ida","Marco","Elisa"] },
-        { id: 6, title: "Condensatore", image: "Condensatore.jpg", motto: "Stabili, poco rumorosi ma fondamentali nel circuito della festa.", guests: ["Nonni","Fabiola","Giuseppe","Elisa","Massimo"] }
+      const tables=[
+        {id:1,title:"Amplificatori Operazionali",image:"48 pin.png",motto:"Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.",guests:["Andrea","Clelia","Stefano","Tiziana"]},
+        {id:2,title:"Resistore",image:"Resistore.jpg",motto:"Ci adattiamo a tutto con la giusta resistenza.",guests:["Sandra","Gino","Francesco","Mapi","Sonia","Matteo","Anna"]},
+        {id:3,title:"Relè",image:"Rele.jpg",motto:"C'è chi fa scattare le luci e chi fa scattare la festa.",guests:["Elena","Alessandro","Dani","Gabri","Enzo","Mary","Piero","Mary"]},
+        {id:4,title:"Transistor",image:"BJT.jpeg",motto:"Tre terminali infinite possibilità.",guests:["Francesco","Roberta","Salvo","Guglielmo","Enza","Adelaide"]},
+        {id:5,title:"LED",image:"Led.jpg",motto:"Splendiamo anche con poca corrente.",guests:["Alessandra","Francesco","Ida","Marco","Elisa"]},
+        {id:6,title:"Condensatore",image:"Condensatore.jpg",motto:"Stabili, poco rumorosi ma fondamentali nel circuito della festa.",guests:["Nonni","Fabiola","Giuseppe","Elisa","Massimo"]}
       ];
       document.write(
-        tables.map(t => `
+        tables.map(t=>`
           <div class="card rounded-2xl shadow-xl cursor-pointer min-h-[32rem]">
             <div class="inner-card">
               <div class="card-front">
-                <img src="images/${t.image}" alt="${t.title}" class="w-full h-80 object-cover ${t.id===4||t.id===5?'object-top':'object-center'} rounded-xl mb-4" />
+                <img src="images/${t.image}" alt="${t.title}" class="w-full h-80 object-cover ${t.id>3?'object-top':'object-center'} rounded-xl mb-4" />
                 <h2 class="text-2xl font-bold mb-2">${t.title}</h2>
                 <p class="italic mb-4 text-text-muted">${t.motto}</p>
                 <p class="text-right text-sm text-text-muted">Clicca per vedere chi c'è</p>
               </div>
               <div class="card-back flex flex-col justify-center">
                 <h2 class="text-xl font-bold mb-2 text-center">${t.title}</h2>
-                <ul class="list-disc list-inside space-y-1">
-                  ${t.guests.map(g=>`<li>${g}</li>`).join('')}
-                </ul>
+                <ul class="list-disc list-inside space-y-1">${t.guests.map(g=>`<li>${g}</li>`).join('')}</ul>
               </div>
             </div>
           </div>
