@@ -1,79 +1,160 @@
-<html lang="it">
+/*
+Repo Structure:
+
+public/
+  index.html
+src/
+  App.jsx
+  index.jsx
+  components/
+    TableCard.jsx
+  styles/
+    tailwind.css
+  tailwind.config.js
+package.json
+README.md
+
+Instructions:
+1. Clone this repo and install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start dev server:
+   ```bash
+   npm run dev
+   ```
+3. Build for GitHub Pages:
+   ```bash
+   npm run build
+   ```
+   Then configure "homepage" in package.json to your GitHub Pages URL and deploy.
+*/
+
+// src/index.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './styles/tailwind.css';
+import App from './App';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// src/App.jsx
+import React from 'react';
+import { motion } from 'framer-motion';
+import TableCard from './components/TableCard';
+
+const tables = [
+  { id: 1, title: 'Amplificatori Operazionali', motto: 'Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.', guests: ['Andrea','Clelia','Stefano','Tiziana'] },
+  { id: 2, title: 'Resistore', motto: 'Ci adattiamo a tutto con la giusta resistenza.', guests: ['Sandra','Gino','Francesco','Mapi','Sonia','Matteo','Anna'] },
+  { id: 3, title: 'Relè', motto: "C'è chi fa scattare le luci e chi fa scattare la festa.", guests: ['Elena','Alessandro','Dani','Gabri','Enzo','Mary','Piero','Mary'] },
+  { id: 4, title: 'Transistor', motto: 'Tre terminali infinite possibilità.', guests: ['Francesco','Roberta','Salvo','Guglielmo','Enza','Adelaide'] },
+  { id: 5, title: 'LED', motto: 'Splendiamo anche con poca corrente.', guests: ['Alessandra','Francesco','Ida','Marco','Elisa'] },
+  { id: 6, title: 'Condensatore', motto: 'Stabili, poco rumorosi ma fondamentali nel circuito della festa.', guests: ['Nonni','Fabiola','Giuseppe','Elisa','Massimo'] },
+];
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-gray-900 text-gray-100 p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {tables.map(table => (
+        <TableCard key={table.id} table={table} />
+      ))}
+    </div>
+  );
+}
+
+// src/components/TableCard.jsx
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+
+export default function TableCard({ table }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      className="bg-gray-800 rounded-2xl shadow-xl p-6 cursor-pointer hover:shadow-2xl transition-shadow"
+      onClick={() => setOpen(!open)}
+      layout
+    >
+      <motion.h2 className="text-xl font-bold mb-2" layout>{table.title}</motion.h2>
+      <motion.p className="italic mb-4 text-gray-400" layout>{table.motto}</motion.p>
+      <motion.div className="flex justify-end" layout>
+        <ChevronDown className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+      </motion.div>
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="mt-4 list-disc list-inside"
+          >
+            {table.guests.map((g, i) => <li key={i}>{g}</li>)}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+// src/styles/tailwind.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// tailwind.config.js
+module.exports = {
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  theme: {
+    extend: {
+      colors: {
+        'gray-900': '#0a0a0f',
+        'gray-800': '#1a1a2e',
+      },
+    },
+  },
+  plugins: [],
+};
+
+// public/index.html
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guida QR Code - Festa di Laurea</title>
-  <!-- Base href per GitHub Pages: sostituisci 'rurr' con il nome del repo -->
-  <base href="/rurr/">
-  <style>
-    body {font-family: sans-serif; background: #f5f5f5; margin:0; padding:20px;}
-    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
-    .card {background:#fff; padding:15px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center;}
-    .card h2 {margin-top:0; font-size:1.25rem;}
-    .card ul {list-style:none; padding:0; margin:10px 0; text-align:left;}
-    .card ul li {margin-bottom:4px;}
-    .slogan {font-style:italic; margin:10px 0;}
-    .qr {margin:auto; width:150px; height:150px;}
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lezione Laurea: Tavoli</title>
 </head>
 <body>
-  <h1>Festa di Laurea: Guida QR Code ai Tavoli</h1>
-  <div class="grid">
-    <!-- Tavolo 1 -->
-    <div class="card" id="tavolo1-card">
-      <h2>Tavolo 1: Amplificatori Operazionali</h2>
-      <ul><li>Andrea</li><li>Clelia</li><li>Stefano</li><li>Tiziana</li></ul>
-      <div class="slogan">"Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo."</div>
-      <div id="qr1" class="qr"></div>
-    </div>
-    <!-- Tavolo 2 -->
-    <div class="card" id="tavolo2-card">
-      <h2>Tavolo 2: Resistore</h2>
-      <ul><li>Sandra</li><li>Gino</li><li>Francesco</li><li>Mapi</li><li>Sonia</li><li>Matteo</li><li>Anna</li></ul>
-      <div class="slogan">"Ci adattiamo a tutto con la giusta resistenza."</div>
-      <div id="qr2" class="qr"></div>
-    </div>
-    <!-- Tavolo 3 -->
-    <div class="card" id="tavolo3-card">
-      <h2>Tavolo 3: Relè</h2>
-      <ul><li>Elena</li><li>Alessandro</li><li>Dani</li><li>Gabri</li><li>Enzo</li><li>Mary</li><li>Piero</li><li>Mary</li></ul>
-      <div class="slogan">"C'è chi fa scattare le luci e chi fa scattare la festa."</div>
-      <div id="qr3" class="qr"></div>
-    </div>
-    <!-- Tavolo 4 -->
-    <div class="card" id="tavolo4-card">
-      <h2>Tavolo 4: Transistor</h2>
-      <ul><li>Francesco</li><li>Roberta</li><li>Salvo</li><li>Guglielmo</li><li>Enza</li><li>Adelaide</li></ul>
-      <div class="slogan">"Tre terminali, infinite possibilità."</div>
-      <div id="qr4" class="qr"></div>
-    </div>
-    <!-- Tavolo 5 -->
-    <div class="card" id="tavolo5-card">
-      <h2>Tavolo 5: LED</h2>
-      <ul><li>Alessandra</li><li>Francesco</li><li>Ida</li><li>Marco</li><li>Elisa</li></ul>
-      <div class="slogan">"Splendiamo anche con poca corrente."</div>
-      <div id="qr5" class="qr"></div>
-    </div>
-    <!-- Tavolo 6 -->
-    <div class="card" id="tavolo6-card">
-      <h2>Tavolo 6: Condensatore</h2>
-      <ul><li>Nonni</li><li>Fabiola</li><li>Giuseppe</li><li>Elisa</li><li>Massimo</li></ul>
-      <div class="slogan">"Stabili, poco rumorosi ma fondamentali nel circuito della festa."</div>
-      <div id="qr6" class="qr"></div>
-    </div>
-  </div>
-  <script>
-    const base = window.location.origin + window.location.pathname;
-    const tables = [
-      {id:'qr1',anchor:'#tavolo1-card'},
-      {id:'qr2',anchor:'#tavolo2-card'},
-      {id:'qr3',anchor:'#tavolo3-card'},
-      {id:'qr4',anchor:'#tavolo4-card'},
-      {id:'qr5',anchor:'#tavolo5-card'},
-      {id:'qr6',anchor:'#tavolo6-card'}
-    ];
-    tables.forEach(t=>new QRCode(document.getElementById(t.id),{text:base+t.anchor,width:150,height:150}));
-  </script>
+  <div id="root"></div>
+  <script type="module" src="/src/index.jsx"></script>
 </body>
 </html>
+
+// package.json
+{
+  "name": "laurea-tavoli",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://<tuo-username>.github.io/laurea-tavoli",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "framer-motion": "^6.0.0",
+    "lucide-react": "^0.0.0"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0",
+    "tailwindcss": "^3.0.0",
+    "autoprefixer": "^10.0.0",
+    "postcss": "^8.0.0"
+  }
+}
