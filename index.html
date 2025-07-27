@@ -52,16 +52,16 @@
         {id:1,title:"Amplificatori Operazionali",image:"48 pin.png",motto:"Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.",guests:["Andrea","Clelia","Stefano","Tiziana"]},
         {id:2,title:"Resistore",image:"Resistore.jpg",motto:"Ci adattiamo a tutto con la giusta resistenza.",guests:["Sandra","Gino","Francesco","Mapi","Sonia","Matteo","Anna"]},
         {id:3,title:"Relè",image:"Rele.jpg",motto:"C'è chi fa scattare le luci e chi fa scattare la festa.",guests:["Elena","Alessandro","Dani","Gabri","Enzo","Mary","Piero","Mary"]},
-        {id:4,title:"Transistor",image:"BJT.jpeg",motto:"Tre terminali infinite possibilità.",guests:["Francesco","Roberta","Salvo","Guglielmo","Enza","Adelaide"]},
+        {id:4,title:"Transistor",image:"BJT.jpeg",motto:"Tre terminali infinite possibilità.",guests:["Francesco","Roberta","Salvo","Guglielmo","Enza","Adelaide"], customClass: "object-bottom"},
         {id:5,title:"LED",image:"Led.jpg",motto:"Splendiamo anche con poca corrente.",guests:["Alessandra","Francesco","Ida","Marco","Elisa"]},
-        {id:6,title:"Condensatore",image:"Condensatore.jpg",motto:"Stabili, poco rumorosi ma fondamentali nel circuito della festa.",guests:["Nonni","Fabiola","Giuseppe","Elisa","Massimo"]}
+        {id:6,title:"Condensatore",image:"Condensatore.jpg",motto:"Stabili, poco rumorosi ma fondamentali nel circuito della festa.",guests:["Nonni","Fabiola","Giuseppe","Elisa","Massimo"], customClass: "object-bottom"}
       ];
       document.write(
         tables.map(t=>`
           <div class="card rounded-md shadow cursor-pointer min-h-[12rem] sm:min-h-[14rem] md:min-h-[16rem]">
             <div class="inner-card">
               <div class="card-front">
-                <img src="images/${t.image}" alt="${t.title}" class="w-full h-24 sm:h-28 md:h-32 object-cover ${t.id>3?'object-top':'object-center'} rounded-md mb-1" />
+                <img src="images/${t.image}" alt="${t.title}" class="w-full h-24 sm:h-28 md:h-32 object-cover ${t.customClass || (t.id>3?'object-top':'object-center')} rounded-md mb-1" />
                 <h2 class="text-xs sm:text-sm md:text-base font-bold mb-1">${t.title}</h2>
                 <p class="italic text-[10px] sm:text-xs mb-1 text-text-muted">"${t.motto}"</p>
                 <p class="text-right text-[7px] sm:text-[9px] text-text-muted">"Clicca per vedere chi c'è"</p>
