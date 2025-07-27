@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Invito Festa di Laurea in Ingegneria Elettronica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #f6f6fa;
+      color: #2c2c38;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 650px;
+      background: #fff;
+      margin: 30px auto 30px auto;
+      padding: 36px 30px 30px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1.5px 6px rgba(85, 100, 255, 0.08);
+      border: 2px solid #b9c1ff;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #4763fc;
+      margin-bottom: 0.1em;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 1.2em;
+      color: #2c2c38;
+      margin-bottom: 0.6em;
+    }
+    .emoji {
+      font-size: 2em;
+      margin-right: 0.2em;
+      vertical-align: middle;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    .tables {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .table-card {
+      background: #f2f6ff;
+      border-radius: 13px;
+      box-shadow: 0 2px 10px #dce3ff6c;
+      padding: 15px 18px;
+      min-width: 170px;
+      margin-bottom: 8px;
+      border-left: 5px solid #4763fc;
+      transition: transform 0.2s;
+    }
+    .table-card:hover {
+      transform: scale(1.04) rotate(-2deg);
+      background: #e7edff;
+    }
+    .table-title {
+      font-weight: bold;
+      color: #4763fc;
+      margin-bottom: 0.35em;
+      font-size: 1.1em;
+    }
+    .note {
+      background: #fffbe6;
+      color: #a08a00;
+      padding: 8px 13px;
+      border-radius: 10px;
+      margin: 18px 0;
+      border-left: 4px solid #ffd700;
+      font-size: 1em;
+      font-style: italic;
+    }
+    .dresscode, .gifts {
+      background: #f5faff;
+      border-left: 4px solid #b9c1ff;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      font-size: 1em;
+    }
+    .footer {
+      text-align: center;
+      color: #6b6b7d;
+      font-size: .97em;
+      margin-top: 18px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 12px 5vw 18px 5vw;
+      }
+      .tables {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      <span class="emoji">🎓</span>Invito alla Festa di Laurea!
+    </h1>
+    <div class="subtitle">
+      Ingegneria Elettronica<br>
+      <span class="emoji">🎉</span>
+      Finalmente ce l'ho fatta... ora si festeggia!
+    </div>
+
+    <section>
+      <strong>Quando:</strong> <u>[Inserisci la data]</u><br>
+      <strong>Orario:</strong> <u>[Inserisci l'orario]</u><br>
+      <strong>Dove:</strong> <u>[Inserisci il luogo]</u>
+    </section>
+
+    <section>
+      <h2 style="margin-bottom:10px;">🍽️ Tavoli a Tema</h2>
+      <div class="tables">
+        <div class="table-card">
+          <div class="table-title">Tavolo 1: I Resistenti</div>
+          Per chi non molla mai, nemmeno davanti alle sessioni infinite!
+        </div>
+        <div class="table-card">
+          <div class="table-title">Tavolo 2: I Condensatori</div>
+          Perfetti per chi ha sempre bisogno di un attimo per caricarsi prima di ballare.
+        </div>
+        <div class="table-card">
+          <div class="table-title">Tavolo 3: I Transistor</div>
+          Gli amplificatori del divertimento!
+        </div>
+        <div class="table-card">
+          <div class="table-title">Tavolo 4: I Led</div>
+          Quelli che brillano (<i>anche troppo</i>) in pista.
+        </div>
+        <div class="table-card">
+          <div class="table-title">Tavolo 5: I Corto Circuito</div>
+          Se ti siedi qui… sappi che tutto può succedere!
+        </div>
+      </div>
+      <div class="note">
+        Fate attenzione: chi si lamenta del menù verrà “messo a terra” come una resistenza da 1 Ohm!
+      </div>
+    </section>
+
+    <section class="dresscode">
+      <b>Dress code:</b> Vietato essere spenti: venite colorati, allegri e pronti a festeggiare!
+    </section>
+
+    <section class="gifts">
+      <b>Lista regali:</b> Il regalo più bello sarà la vostra presenza, ma se volete contribuire…<br>
+      [Inserisci preferenze o IBAN per il viaggio post-laurea]
+    </section>
+
+    <div class="footer">
+      Vi aspetto per festeggiare insieme questo traguardo…<br>
+      <b>Chi non viene… ha la sessione di settembre! 😜</b>
+    </div>
+  </div>
+</body>
+</html>
