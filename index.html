@@ -4,25 +4,25 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laurea: Tavoli</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>Laurea 🎓: Tavoli</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: 'Press Start 2P', cursive; }
-    :root {
-      --bg-dark: #0a0a0f;
-      --card-dark: #1a1a2e;
-      --accent: #00ffff;
-      --text-light: #e0e0e0;
-      --text-muted: #888;
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: #0a0a0f;
+      color: #e0e0e0;
+      position: relative;
+      overflow-x: hidden;
     }
-    body { background: var(--bg-dark); color: var(--text-light); }
+
     .card { perspective: 800px; }
     .inner-card {
       transition: transform 0.5s;
       transform-style: preserve-3d;
       position: relative;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
     }
     .flipped .inner-card { transform: rotateY(180deg); }
     .card-front, .card-back {
@@ -32,49 +32,121 @@
       padding: 0.5rem;
       border-radius: 0.5rem;
     }
-    .card-front { background: var(--card-dark); }
+    .card-front { background: #1a1a2e; }
     .card-back {
-      background: var(--card-dark);
+      background: #1a1a2e;
       transform: rotateY(180deg);
     }
+    .text-text-muted { color: #888; }
+    @keyframes pixel-shake {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+    .shake { animation: pixel-shake 0.3s steps(2) 1; }
+    .flipped {
+      box-shadow:
+        0 0 4px #00ffff,
+        0 0 8px #00ffff,
+        0 0 12px #00ffff,
+        0 0 16px #00ffff;
+      transition: box-shadow 0.3s ease-in-out;
+    }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.card').forEach(card => card.addEventListener('click', () => card.classList.toggle('flipped')));
-    });
-  </script>
 </head>
-<body class="p-1 sm:p-2 md:p-4">
-  <h1 class="text-sm sm:text-base md:text-lg mb-2 sm:mb-4 text-center" style="color: var(--accent)">Benvenuti alla Festa di Laurea</h1>
-  <div class="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-2 lg:grid-cols-3">
-    <script>
-      const tables=[
-        {id:1,title:"Amplificatori Operazionali",image:"48 pin.png",motto:"Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.",guests:["Andrea","Clelia","Stefano","Tiziana"]},
-        {id:2,title:"Resistore",image:"Resistore.jpg",motto:"Ci adattiamo a tutto con la giusta resistenza.",guests:["Sandra","Gino","Francesco","Mapi","Sonia","Matteo","Anna"]},
-        {id:3,title:"Relè",image:"Relenew.jpg",motto:"C'è chi fa scattare le luci e chi fa scattare la festa.",guests:["Elena","Alessandro","Dani","Gabri","Enzo","Mary","Piero","Mary"]},
-        {id:4,title:"Transistor",image:"image.png",motto:"Tre terminali infinite possibilità.",guests:["Francesco","Roberta","Salvo","Guglielmo","Enza","Adelaide"], customClass: "object-top"},
-        {id:5,title:"LED",image:"LedNew.png",motto:"Splendiamo anche con poca corrente.",guests:["Alessandra","Francesco","Ida","Marco","Elisa"]},
-        {id:6,title:"Condensatore",image:"Condensatore.png",motto:"Stabili, poco rumorosi ma fondamentali nel circuito della festa.",guests:["Nonni","Fabiola","Giuseppe","Elisa","Massimo"], customClass: "object-top"}
-      ];
-      document.write(
-        tables.map(t=>`
-          <div class="card rounded-md shadow cursor-pointer min-h-[12rem] sm:min-h-[14rem] md:min-h-[16rem]">
-            <div class="inner-card">
-              <div class="card-front">
-                <img src="images/${t.image}" alt="${t.title}" class="w-full h-24 sm:h-28 md:h-32 object-cover ${t.customClass || (t.id>3?'object-top':'object-center')} rounded-md mb-1" />
-                <h2 class="text-xs sm:text-sm md:text-base font-bold mb-1">${t.title}</h2>
-                <p class="italic text-[10px] sm:text-xs mb-1 text-text-muted">"${t.motto}"</p>
-                <p class="text-right text-[7px] sm:text-[9px] text-text-muted">"Clicca per vedere chi c'è"</p>
-              </div>
-              <div class="card-back flex flex-col justify-center p-1">
-                <h2 class="text-xs sm:text-sm md:text-base font-bold mb-1 text-center">${t.title}</h2>
-                <ul class="list-disc list-inside space-y-0.5 text-[8px] sm:text-[10px] md:text-xs">${t.guests.map(g=>`<li>${g}</li>`).join('')}</ul>
-              </div>
+<body class="p-1 sm:p-2 md:p-4 pb-[120px]">
+  <!-- Header: gif e titolo affiancati -->
+  <div class="flex flex-col sm:flex-row items-center justify-center mb-4 space-y-2 sm:space-y-0 sm:space-x-4">
+    <img id="jazz-standing" src="images/Jazz_Standing.gif" alt="Jazz Jackrabbit in piedi"
+         class="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32" />
+    <h1 class="text-base sm:text-lg md:text-xl text-cyan-300">
+      🎓 Benvenuti alla Festa di Laurea 🎓
+    </h1>
+  </div>
+
+  <div id="cards-container" class="grid grid-cols-1 gap-2 sm:gap-3 md:grid-cols-2 lg:grid-cols-3"></div>
+
+  <!-- Suono flip -->
+  <audio id="flip-sound" src="sound/retro-coin-4-236671.mp3" preload="auto"></audio>
+  <!-- Musica di sottofondo (nascosta, autostart) -->
+  <audio id="bg-music" src="sound/Jazz Jackrabbit 2 Soundtrack - Tubelectric Remix.mp3"
+         preload="auto" autoplay loop muted controls="hidden"></audio>
+
+  <!-- GIF running spostata a sinistra -->
+  <img id="jazz-bg" src="images/Jazz_Super_Running.gif" alt="Jazz Jackrabbit che corre"
+       class="fixed bottom-0 left-0 h-24 sm:h-32 md:h-40 opacity-90 pointer-events-none -z-10" />
+
+  <script>
+    const tables = [
+      { id: 1, title: "Amplificatori Operazionali", image: "48 pin.png", peopleImage: "operazionale.png", motto: "Tutto parte da zero, ma noi ci portiamo ogni segnale al massimo.", guests: ["Andrea", "Clelia", "Chiara", "Stefano", "Tiziana"] },
+      { id: 2, title: "Resistore", image: "Resistore.jpg", peopleImage: "Resistori.png", motto: "Ci adattiamo a tutto con la giusta resistenza.", guests: ["Sandra", "Gino", "Francesco", "Mapi", "Sonia", "Matteo", "Anna"] },
+      { id: 3, title: "Relè", image: "Relenew.jpg", peopleImage: "Relè.png", motto: "C'è chi fa scattare le luci e chi fa scattare la festa.", guests: ["Elena", "Alessandro", "Dani", "Gabri", "Enzo", "Mary", "Piero", "Mary"] },
+      { id: 4, title: "Transistor", image: "image.png", peopleImage: "Transistor.png", motto: "Tre terminali infinite possibilità.", guests: ["Francesco", "Roberta", "Salvo", "Guglielmo", "Enza", "Adelaide"], customClass: "object-top" },
+      { id: 5, title: "LED", image: "LedNew.png", peopleImage: "LED.png", motto: "Splendiamo anche con poca corrente.", guests: ["Alessandra", "Francesco", "Ida", "Marco", "Elisa"] },
+      { id: 6, title: "Condensatore", image: "Condensatore.png", peopleImage: "Condensatori.png", motto: "Stabili, poco rumorosi ma fondamentali nel circuito della festa.", guests: ["Nonni", "Fabiola", "Giuseppe", "Elisa", "Massimo"], customClass: "object-top" }
+    ];
+
+    const container = document.getElementById("cards-container");
+    const sound = document.getElementById("flip-sound");
+    const bgMusic = document.getElementById("bg-music");
+
+    tables.forEach(t => {
+      const card = document.createElement("div");
+      card.className = "card rounded-md shadow cursor-pointer min-h-[12rem] sm:min-h-[14rem] md:min-h-[16rem]";
+      card.setAttribute("role", "button");
+      card.setAttribute("tabindex", "0");
+
+      card.innerHTML = `
+        <div class="inner-card">
+          <div class="card-front">
+            <img src="images/${t.image}" alt="${t.title}" onerror="this.src='images/default.png'"
+              class="w-full h-24 sm:h-28 md:h-32 object-cover ${t.customClass || (t.id > 3 ? 'object-top' : 'object-center')} rounded-md mb-1" />
+            <h2 class="text-xs sm:text-sm md:text-base font-bold mb-1">${t.title}</h2>
+            <p class="italic text-[10px] sm:text-xs mb-1 text-text-muted">"${t.motto}"</p>
+            <p class="text-right text-[7px] sm:text-[9px] text-text-muted">Clicca per vedere chi c'è</p>
+          </div>
+          <div class="card-back flex flex-col p-1 h-full">
+            <h2 class="text-xs sm:text-sm md:text-base font-bold mb-1 text-center">${t.title}</h2>
+            <div class="flex flex-1 items-stretch space-x-2">
+              <img src="images/people/${t.peopleImage}" alt="Persone tavolo ${t.title}"
+                onerror="this.style.display='none'"
+                class="flex-1 w-0 rounded border border-cyan-400 object-contain" />
+              <ul class="flex-1 w-0 list-disc list-inside p-1 overflow-auto text-[8px] sm:text-[10px] md:text-xs">
+                ${t.guests.map(g => `<li>${g}</li>`).join('')}
+              </ul>
             </div>
           </div>
-        `).join('')
-      );
-    </script>
-  </div>
+        </div>
+      `;
+
+      const toggleFlip = () => {
+        card.classList.toggle('flipped');
+        card.classList.add('shake');
+        setTimeout(() => card.classList.remove('shake'), 300);
+        try {
+          sound.currentTime = 0;
+          sound.play();
+        } catch (e) {}
+      };
+
+      card.addEventListener("click", toggleFlip);
+      card.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleFlip();
+        }
+      });
+
+      container.appendChild(card);
+    });
+
+    // Ripristina audio non muto al primo click
+    document.addEventListener('click', () => {
+      bgMusic.muted = false;
+      bgMusic.play().catch(() => {});
+    }, { once: true });
+  </script>
 </body>
 </html>
